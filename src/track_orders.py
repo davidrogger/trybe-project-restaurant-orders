@@ -81,7 +81,8 @@ class TrackOrders:
 
     def get_days_never_visited_per_customer(self, customer):
         customer_visted_days = self.customers[customer]["days"]
-        return self.open_days.difference(customer_visted_days)
+        open_days = set(self.open_days)
+        return open_days.difference(customer_visted_days)
 
     def get_order_quantity_per_customer(self, customer, order):
         return self.customers[customer]["orders"][order]
