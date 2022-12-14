@@ -59,8 +59,11 @@ class InventoryControl:
         self.consuming_inventory(ingredients)
 
     def add_new_order(self, customer, order, day):
-        self.inventory_moviment(order)
-        self.track_orders.add_new_order(customer, order, day)
+        try:
+            self.inventory_moviment(order)
+            self.track_orders.add_new_order(customer, order, day)
+        except ValueError:
+            return False
 
     def get_quantities_to_buy(self):
         return self.NEED_TO_BUY
