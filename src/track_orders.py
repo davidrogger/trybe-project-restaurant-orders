@@ -83,6 +83,9 @@ class TrackOrders:
         customer_visted_days = self.customers[customer]["days"]
         return self.open_days.difference(customer_visted_days)
 
+    def get_order_quantity_per_customer(self, customer, order):
+        return self.customers[customer]["orders"][order]
+
     def get_busiest_day(self):
         return self.busiest_day
 
