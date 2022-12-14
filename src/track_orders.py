@@ -1,4 +1,7 @@
 class TrackOrders:
+    def __init__(self) -> None:
+        self.customers = dict()
+
     def __len__(self):
         pass
 
