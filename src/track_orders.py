@@ -1,6 +1,7 @@
 class TrackOrders:
     def __init__(self) -> None:
         self.customers = dict()
+        self.menu = set()
 
     def __len__(self):
         return len(self.customers)
@@ -33,6 +34,7 @@ class TrackOrders:
             self.customers[customer]["days"] = set()
             self.customers[customer]["most_ordered"] = order
 
+        self.menu.add(order)
         self.updated_customer_orders(customer, order)
         self.customers[customer]['days'].add(day)
 
@@ -40,7 +42,8 @@ class TrackOrders:
         return self.customers[customer]["most_ordered"]
 
     def get_never_ordered_per_customer(self, customer):
-        pass
+        customer_orders = set(self.customers[customer]["orders"])
+        return self.menu.difference(customer_orders)
 
     def get_days_never_visited_per_customer(self, customer):
         pass
