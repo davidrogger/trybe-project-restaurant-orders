@@ -3,7 +3,7 @@ class TrackOrders:
         self.customers = dict()
 
     def __len__(self):
-        pass
+        return len(self.customers)
 
     def add_new_order(self, customer, order, day):
         pass
