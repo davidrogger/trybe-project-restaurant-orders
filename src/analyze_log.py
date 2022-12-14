@@ -2,11 +2,21 @@ import csv
 from src.track_orders import TrackOrders
 
 
-def get_orders(path_to_file):
-    with open(path_to_file, "r") as file:
-        file_data = csv.reader(file)
-        orders = [*file_data]
-    return orders
+def get_orders(path_to_file: str):
+    try:
+        with open(path_to_file, "r") as file:
+            file_data = csv.reader(file)
+            orders = [*file_data]
+    except FileNotFoundError:
+        validExtension = "txt"
+        prefix_msg = (
+            "Extensão inválida:"
+            if path_to_file.endswith(validExtension)
+            else "Arquivo inexistente: "
+        )
+        raise FileNotFoundError(f"{prefix_msg}'{path_to_file}'")
+    else:
+        return orders
 
 
 def create_track(orders):
