@@ -4,6 +4,7 @@ class TrackOrders:
         self.menu = set()
         self.open_days = dict()
         self.busiest_day = None
+        self.less_busy_day = None
 
     def __len__(self):
         return len(self.customers)
@@ -40,7 +41,7 @@ class TrackOrders:
         self.update_moviment_day(day)
 
         self.updated_customer_orders(customer, order)
-        self.customers[customer]['days'].add(day)
+        self.customers[customer]["days"].add(day)
 
     def get_most_ordered_dish_per_customer(self, customer):
         return self.customers[customer]["most_ordered"]
@@ -59,6 +60,16 @@ class TrackOrders:
         else:
             self.busiest_day = day
 
+    def update_less_busy_day(self, day):
+        if self.less_busy_day:
+            moviment_less_busy_day = self.open_days[self.less_busy_day]
+            moviment_day = self.open_days[day]
+
+            if moviment_day < moviment_less_busy_day:
+                self.less_busy_day = day
+        else:
+            self.less_busy_day = day
+
     def update_moviment_day(self, day):
         if day not in self.open_days:
             self.open_days[day] = 1
@@ -66,6 +77,7 @@ class TrackOrders:
             self.open_days[day] += 1
 
         self.update_busiest_day(day)
+        self.update_less_busy_day(day)
 
     def get_days_never_visited_per_customer(self, customer):
         customer_visted_days = self.customers[customer]["days"]
@@ -75,4 +87,4 @@ class TrackOrders:
         return self.busiest_day
 
     def get_least_busy_day(self):
-        pass
+        return self.less_busy_day
