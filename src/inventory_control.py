@@ -1,3 +1,6 @@
+from src.track_orders import TrackOrders
+
+
 class InventoryControl:
     INGREDIENTS = {
         "hamburguer": ["pao", "carne", "queijo"],
@@ -26,7 +29,18 @@ class InventoryControl:
     }
 
     def __init__(self):
-        pass
+        self.track_orders = TrackOrders()
+
+    def check_ingredients_available(self, ingredients: list):
+        for ingredient in ingredients:
+            quantity = self.CURRENT_INVENTORY[ingredient]
+            if quantity == 0:
+                raise ValueError("Insufficient quantity")
+
+    def check_stock(self, order):
+        ingredients = self.INGREDIENTS[order]
+
+        self.check_ingredients_available(ingredients)
 
     def add_new_order(self, customer, order, day):
         pass
