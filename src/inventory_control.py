@@ -1,6 +1,17 @@
 from src.track_orders import TrackOrders
 
 
+INITIAL_INVENTORY = {
+    "pao": 50,
+    "carne": 50,
+    "queijo": 100,
+    "molho": 50,
+    "presunto": 50,
+    "massa": 50,
+    "frango": 50,
+}
+
+
 class InventoryControl:
     INGREDIENTS = {
         "hamburguer": ["pao", "carne", "queijo"],
@@ -9,16 +20,6 @@ class InventoryControl:
         "coxinha": ["massa", "frango"],
     }
     MINIMUM_INVENTORY = {
-        "pao": 50,
-        "carne": 50,
-        "queijo": 100,
-        "molho": 50,
-        "presunto": 50,
-        "massa": 50,
-        "frango": 50,
-    }
-
-    CURRENT_INVENTORY = {
         "pao": 50,
         "carne": 50,
         "queijo": 100,
@@ -38,24 +39,23 @@ class InventoryControl:
         "frango": 0,
     }
 
-    AVAILABLE_DISHES = {
-        "hamburguer", "pizza", "misto-quente", "coxinha"
-    }
+    AVAILABLE_DISHES = {"hamburguer", "pizza", "misto-quente", "coxinha"}
 
-    def __init__(self):
+    def __init__(self, inventory=INITIAL_INVENTORY):
         self.track_orders = TrackOrders()
+        self.current_inventory = inventory
 
     def check_ingredients_available(self, ingredients: list):
         for ingredient in ingredients:
-            quantity = self.CURRENT_INVENTORY[ingredient]
+            quantity = self.current_inventory[ingredient]
             if quantity == 0:
                 raise ValueError("Insufficient quantity")
 
     def consuming_inventory(self, ingredients):
         for ingredient in ingredients:
-            self.CURRENT_INVENTORY[ingredient] -= 1
+            self.current_inventory[ingredient] -= 1
             self.NEED_TO_BUY[ingredient] += 1
-            if not self.CURRENT_INVENTORY[ingredient]:
+            if not self.current_inventory[ingredient]:
                 self.update_available_dishes(ingredient)
 
     def inventory_moviment(self, order):
@@ -75,15 +75,17 @@ class InventoryControl:
         return self.NEED_TO_BUY
 
     def update_available_dishes(self, ingredient):
-        dishes_using_ingredient = set()
+        dishe_unavailable = set()
 
-        for dishe in self.INGREDIENTS:
+        for dishe in self.AVAILABLE_DISHES:
             if ingredient in self.INGREDIENTS[dishe]:
-                dishes_using_ingredient.add(dishe)
+                dishe_unavailable.add(dishe)
 
-        self.AVAILABLE_DISHES = self.AVAILABLE_DISHES.difference(
-            dishes_using_ingredient
-            )
+        updated_available_dishes = self.AVAILABLE_DISHES.difference(
+            dishe_unavailable
+        )
+
+        self.AVAILABLE_DISHES = updated_available_dishes
 
     def get_available_dishes(self):
         return self.AVAILABLE_DISHES
