@@ -29,21 +29,12 @@ class InventoryControl:
         "frango": 50,
     }
 
-    NEED_TO_BUY = {
-        "pao": 0,
-        "carne": 0,
-        "queijo": 0,
-        "molho": 0,
-        "presunto": 0,
-        "massa": 0,
-        "frango": 0,
-    }
-
     AVAILABLE_DISHES = {"hamburguer", "pizza", "misto-quente", "coxinha"}
 
     def __init__(self, inventory=INITIAL_INVENTORY):
         self.track_orders = TrackOrders()
         self.current_inventory = inventory
+        self.checking_inventory()
 
     def check_ingredients_available(self, ingredients: list):
         for ingredient in ingredients:
@@ -54,7 +45,7 @@ class InventoryControl:
     def consuming_inventory(self, ingredients):
         for ingredient in ingredients:
             self.current_inventory[ingredient] -= 1
-            self.NEED_TO_BUY[ingredient] += 1
+            self.need_to_buy[ingredient] += 1
             if not self.current_inventory[ingredient]:
                 self.update_available_dishes(ingredient)
 
@@ -71,8 +62,19 @@ class InventoryControl:
         except ValueError:
             return False
 
+    def checking_inventory(self):
+        self.need_to_buy = dict()
+
+        for ingredient in self.MINIMUM_INVENTORY:
+            current_ingredient_quantity = self.current_inventory[ingredient]
+            minimum_quantity = self.MINIMUM_INVENTORY[ingredient]
+
+            self.need_to_buy[ingredient] = (
+                minimum_quantity - current_ingredient_quantity
+                )
+
     def get_quantities_to_buy(self):
-        return self.NEED_TO_BUY
+        return self.need_to_buy
 
     def update_available_dishes(self, ingredient):
         dishe_unavailable = set()
