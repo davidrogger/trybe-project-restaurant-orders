@@ -29,12 +29,11 @@ class InventoryControl:
         "frango": 50,
     }
 
-    AVAILABLE_DISHES = {"hamburguer", "pizza", "misto-quente", "coxinha"}
-
     def __init__(self, inventory=INITIAL_INVENTORY):
         self.track_orders = TrackOrders()
-        self.current_inventory = inventory
-        self.checking_inventory()
+        self.current_inventory = inventory.copy()
+        self.need_to_buy = self.checking_inventory()
+        self.available_dishes = self.checking_available_dishes()
 
     def check_ingredients_available(self, ingredients: list):
         for ingredient in ingredients:
@@ -63,15 +62,27 @@ class InventoryControl:
             return False
 
     def checking_inventory(self):
-        self.need_to_buy = dict()
+        need_to_buy = dict()
 
         for ingredient in self.MINIMUM_INVENTORY:
             current_ingredient_quantity = self.current_inventory[ingredient]
             minimum_quantity = self.MINIMUM_INVENTORY[ingredient]
 
-            self.need_to_buy[ingredient] = (
+            need_to_buy[ingredient] = (
                 minimum_quantity - current_ingredient_quantity
                 )
+
+        return need_to_buy
+
+    def checking_available_dishes(self):
+        availabel_dishes = set()
+
+        for dishe in self.INGREDIENTS:
+            for ingredient in self.INGREDIENTS[dishe]:
+                if self.current_inventory[ingredient] > 0:
+                    availabel_dishes.add(dishe)
+
+        return availabel_dishes
 
     def get_quantities_to_buy(self):
         return self.need_to_buy
@@ -79,15 +90,15 @@ class InventoryControl:
     def update_available_dishes(self, ingredient):
         dishe_unavailable = set()
 
-        for dishe in self.AVAILABLE_DISHES:
+        for dishe in self.available_dishes:
             if ingredient in self.INGREDIENTS[dishe]:
                 dishe_unavailable.add(dishe)
 
-        updated_available_dishes = self.AVAILABLE_DISHES.difference(
+        updated_available_dishes = self.available_dishes.difference(
             dishe_unavailable
         )
 
-        self.AVAILABLE_DISHES = updated_available_dishes
+        self.available_dishes = updated_available_dishes
 
     def get_available_dishes(self):
-        return self.AVAILABLE_DISHES
+        return self.available_dishes
