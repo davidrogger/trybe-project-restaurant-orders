@@ -38,6 +38,10 @@ class InventoryControl:
         "frango": 0,
     }
 
+    AVAILABLE_DISHES = {
+        "hamburguer", "pizza", "misto-quente", "coxinha"
+    }
+
     def __init__(self):
         self.track_orders = TrackOrders()
 
@@ -51,6 +55,8 @@ class InventoryControl:
         for ingredient in ingredients:
             self.CURRENT_INVENTORY[ingredient] -= 1
             self.NEED_TO_BUY[ingredient] += 1
+            if not self.CURRENT_INVENTORY[ingredient]:
+                self.update_available_dishes(ingredient)
 
     def inventory_moviment(self, order):
         ingredients = self.INGREDIENTS[order]
@@ -67,3 +73,17 @@ class InventoryControl:
 
     def get_quantities_to_buy(self):
         return self.NEED_TO_BUY
+
+    def update_available_dishes(self, ingredient):
+        dishes_using_ingredient = set()
+
+        for dishe in self.INGREDIENTS:
+            if ingredient in self.INGREDIENTS[dishe]:
+                dishes_using_ingredient.add(dishe)
+
+        self.AVAILABLE_DISHES = self.AVAILABLE_DISHES.difference(
+            dishes_using_ingredient
+            )
+
+    def get_available_dishes(self):
+        return self.AVAILABLE_DISHES
