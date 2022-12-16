@@ -37,6 +37,30 @@ Métodos como:
 Nesse método aproveitei das propriedades do `set`, onde eu posso verificar a diferença entre os dias abertos e os dias que o cliente compareceu, resultando nos dias que ele não fez pedido nenhum.
 
 
+# Classe InventoryControl
+
+Essa classe foi responsavel por manter um controle do estoque, para evitar pedidos onde não havia material para preparar aquele pedido, e com possibilidade de verificar a quantidade necessária para compra, mantendo um estoque mínimo.
+
+Inicialmente criei um `current inventory`, onde eu atualizava internamente na classe o estoque atualmente, mas isso não fazia muito sentido, então passei o current inventory via parametro na classe, pois quando ele iniciar essa classe, ele pode ter um estoque maior do que o minimo, e não faria sentido ele pedir para comprar sendo que não estava no minimo ainda, somente usando com base o consumo dos itens conforma os pedidos eram feitos.
+Após um tempo de uso do sistema, ele ficaria "redondo" deixando somente o mínimo.
+
+## checking_inventory e checking_available_dishes
+
+Com base no estoque, durante a criação da classe, eles calculava e verificava, caso ele inicie a classe com um estoque abaixo do minimo, criando a classe já com os pratos disponiveis para venda, com base no estoque, e os materiais que precisam ser comprados.
+
+## get_quantities_to_buy
+
+Esse método acessa o atributo onde é realizado o calculo no inicio e é sempre atualizado a cada compra, dos materiais consumidos, retornando a quantidade necessária para compra, para manter o mínimo do estoque.
+
+## get_available_dishes
+
+Assim como o get quantities, eles possui um calculo inicial com base no estoque inicial, para saber quais pratos podem ser produzidos para venda, e cada venda, ele verifica se os ingredientes estão disponveis para mais produções, evitando vendas sem a possibilidade de produzir aquele determinado prato.
+
+## add_new_order
+
+Durante a criação de um novo pedido, ele aciona vários métodos, para verificar estoque, e movimentar o estoque antes de criar o pedido.
+
+
 
 
 # Tecnologias e ferramentas usadas 🛠
