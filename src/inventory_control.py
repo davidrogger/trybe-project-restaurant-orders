@@ -75,14 +75,14 @@ class InventoryControl:
         return need_to_buy
 
     def checking_available_dishes(self):
-        availabel_dishes = set()
+        available_dishes = set()
 
         for dishe in self.INGREDIENTS:
             for ingredient in self.INGREDIENTS[dishe]:
                 if self.current_inventory[ingredient] > 0:
-                    availabel_dishes.add(dishe)
+                    available_dishes.add(dishe)
 
-        return availabel_dishes
+        return available_dishes
 
     def get_quantities_to_buy(self):
         return self.need_to_buy
