@@ -23,7 +23,8 @@
 
 # Desafios
 
-- 
+- Maior desafio atual, tem sido melhor forma de buscar alguma informação de forma que não gera uma grande complexidade de tempo, mesmo sendo arquivos pequenos, sempre me pergunto, 
+como melhorar aquela linha de código com base em complexidade.
 # Conclusão
 
 - 
