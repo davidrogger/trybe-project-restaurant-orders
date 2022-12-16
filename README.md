@@ -27,7 +27,7 @@
 como melhorar aquela linha de código com base em complexidade.
 # Conclusão
 
-- 
+- Depois de mais de 12 meses de curso, projeto final, foi mais simples que eu esperava, mas se fosse necessário desenvolver esse mesmo projeto 12 meses atrás, quando eu iniciei na área, provavelmente eu teria bastante problemas, como sempre é gratificante demais ver que meu eu de tempos atrás agora domina bem e encontra as soluções, e que venham mais desafios!
 
 <details>
   <summary>
