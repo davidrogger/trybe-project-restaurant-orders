@@ -11,9 +11,6 @@
     </strong>
   </summary>
 
-
-</details>
-
 # Inicio do projeto
 
 Lendo o README fornecido pela trybe, vi que para ter um ganho de tempo e eficiencia, não devia começar do primeiro requisito, pois ele pedia funcionalidades, que a classe criada no requisito 2, iria executar com muito mais eficiencia que criando método por método.
@@ -60,6 +57,8 @@ Assim como o get quantities, eles possui um calculo inicial com base no estoque 
 
 Durante a criação de um novo pedido, ele aciona vários métodos, para verificar estoque, e movimentar o estoque antes de criar o pedido.
 
+
+</details>
 
 # Tecnologias e ferramentas usadas 🛠
 
