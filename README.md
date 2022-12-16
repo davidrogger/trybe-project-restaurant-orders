@@ -14,7 +14,30 @@
 
 </details>
 
-#
+# Inicio do projeto
+
+Lendo o README fornecido pela trybe, vi que para ter um ganho de tempo e eficiencia, não devia começar do primeiro requisito, pois ele pedia funcionalidades, que a classe criada no requisito 2, iria executar com muito mais eficiencia que criando método por método.
+
+# Classe TrackOrders
+
+Define o atributo principal, `customers` sendo um dict, pois durante todo o projeto os usuários, tinham nomes únicos, e seria a forma mais eficiente de encontrar o cliente, e capturar as informações, sem ter que percorrer todos clientes, até encontrar a informação desejada.
+
+## add_new_order
+
+Inicialmente quando adicionando um novo pedido, verifico se o nome do cliente ja existe, caso não, criou o campo, e adiciono os dados de orders, onde adiciono cada item, com uma contagem de quantas vezes ele pediu aquele determinado prato, e um campo de days como conjunto, onde é adicionado os dias que ele pediu aquele prato, constando a presença dele naquele dia.
+Ao decorrer do projeto o add new order foi criando novos sub métodos, onde era necessário determinar qual o pedido era mais pedido, quais os dias eram mais frequentes, achei essa forma mais eficiente, do que quando formos consultar esses dados, ele verificar na hora, gerando complexidades de tempo de O(n), dessa forma ele somava a quantidade na hora da inserção do item, e ja comparava se aquele item se tornava o mais consumido, ou se aquele dia se tornava o mais movimentado durante a adição do pedido().
+Métodos como:
+
+- get_most_ordered_dish_per_customer
+- get_busiest_day
+- get_least_busy_day
+
+## get_days_never_visited_per_customer
+
+Nesse método aproveitei das propriedades do `set`, onde eu posso verificar a diferença entre os dias abertos e os dias que o cliente compareceu, resultando nos dias que ele não fez pedido nenhum.
+
+
+
 
 # Tecnologias e ferramentas usadas 🛠
 
