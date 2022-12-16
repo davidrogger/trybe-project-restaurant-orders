@@ -61,8 +61,6 @@ Assim como o get quantities, eles possui um calculo inicial com base no estoque 
 Durante a criação de um novo pedido, ele aciona vários métodos, para verificar estoque, e movimentar o estoque antes de criar o pedido.
 
 
-
-
 # Tecnologias e ferramentas usadas 🛠
 
 ![Python](https://img.shields.io/badge/-Python-%23F7DF1C?style=flat-square&logo=python)
