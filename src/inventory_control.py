@@ -68,9 +68,14 @@ class InventoryControl:
             current_ingredient_quantity = self.current_inventory[ingredient]
             minimum_quantity = self.MINIMUM_INVENTORY[ingredient]
 
-            need_to_buy[ingredient] = (
-                minimum_quantity - current_ingredient_quantity
+            quantity_need = minimum_quantity - current_ingredient_quantity
+            no_need = 0
+
+            quantity = (
+                quantity_need if quantity_need > no_need else no_need
                 )
+
+            need_to_buy[ingredient] = quantity
 
         return need_to_buy
 
