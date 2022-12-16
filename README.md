@@ -1,6 +1,8 @@
 # Sobre o Projeto 
 
-- 
+- Sexto e ultimo projeto tanto do modulo quanto do curso da trybe.
+- Essa seção deu continuidade com TAD, focando agora em hashmaps e set.
+- Desenvolver um sistema para uma lancheonete, onde é possível coletar informações de venda com nome, o prato pedido e o dia da semana que foi realizado o pedido, de um arquivo CSV, coletando essas informações é possível realizar filtros, como buscar qual o dia mais movimentado, quantidade que determinado cliente, consumiu de um item em especifico ou qual item ele consumiu mais, qual dia ele nunca compareceu ao local.
 
 <details>
   <summary>
@@ -22,7 +24,6 @@
 # Desafios
 
 - 
-
 # Conclusão
 
 - 
