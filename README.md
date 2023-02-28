@@ -1,8 +1,24 @@
-# Sobre o Projeto 
+# Sobre
 
-- Sexto e ultimo projeto tanto do modulo quanto do curso da trybe.
-- Essa seção deu continuidade com TAD, focando agora em hashmaps e set.
-- Desenvolver um sistema para uma lancheonete, onde é possível coletar informações de venda com nome, o prato pedido e o dia da semana que foi realizado o pedido, de um arquivo CSV, coletando essas informações é possível realizar filtros, como buscar qual o dia mais movimentado, quantidade que determinado cliente, consumiu de um item em especifico ou qual item ele consumiu mais, qual dia ele nunca compareceu ao local.
+## Seção: `Estrutura de dados`
+
+
+- Continuidade com ED, focando agora em hashmaps e set.
+
+#
+<div align="center">
+  <a href="https://www.w3resource.com/python/python-dictionary.php">
+    <img src="./readme-imgs/project_top.webp" width="30%"></img>
+  </a>
+  <a href="https://www.educba.com/python-sets/?source=leftnav">
+    <img src="./readme-imgs/project_mid.webp" width="43%"></img>
+  </a>
+</div>
+
+>Ilustração dicionário e conjuntos
+## Projeto: `Restaurant Orders`
+
+- Sistema para uma lancheonete, onde é possível coletar informações de venda com nome, o prato pedido e o dia da semana que foi realizado o pedido, de um arquivo CSV, coletando essas informações é possível realizar filtros, como buscar qual o dia mais movimentado, quantidade que determinado cliente, consumiu de um item em especifico ou qual item ele consumiu mais, qual dia ele nunca compareceu ao local.
 
 <details>
   <summary>
@@ -117,3 +133,9 @@ como melhorar aquela linha de código com base em complexidade.
 
 
 </details>
+
+#
+
+<div align="right">
+  <img src="https://badgen.net/badge/last%20update/28-02-2023/blue">
+</div>
